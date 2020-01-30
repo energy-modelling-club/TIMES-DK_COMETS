@@ -7,3 +7,6 @@ To obtain the model, including the TIMES source code, run the following command:
 
 To run a specific scenario (e.g. Frozen_policy_scenarie) execute the following command from root:
 > GAMS runmodel --comets_scenario=Frozen_policy_scenarie
+
+The model is solved using CBC by default, adjust the command to solve it e.g., with CPLEX:
+> GAMS runmodel --comets_scenario=Frozen_policy_scenarie --solve_with=CPLEX
