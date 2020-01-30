@@ -1,0 +1,3 @@
+$ cat .gitattributes
+*.dd linguist-language=GAMS
+*.RUN linguist-language=GAMS
