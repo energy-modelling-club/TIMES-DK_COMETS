@@ -1,59 +1,3 @@
-$TITLE  TIMES -- VERSION 4.1.0
-OPTION RESLIM=50000, PROFILE=1, SOLVEOPT=REPLACE;
-OPTION ITERLIM=999999, LIMROW=0, LIMCOL=0, SOLPRINT=OFF;
-
-option LP=cplex;
-
-*--If you want to use an optimizer other than cplex/xpress, enter it here:
-*OPTION LP=MyOptimizer;
-
-$OFFLISTING
-*$ONLISTING
-
-* activate validation to force VAR_CAP/COMPRD
-$SET VALIDATE 'NO'
-* reduction of equation system
-$SET REDUCE   'YES'
-*--------------------------------------------------------------*
-* BATINCLUDE calls should all be with lower case file names!!! *
-*--------------------------------------------------------------*
-
-* initialize the environment variables
-$ SET DSCAUTO YES 
-$   SET VDA YES 
-$   SET DEBUG                          'NO'
-$   SET DUMPSOL                        'NO'
-$   SET SOLVE_NOW                      'YES'
-$   SET MODEL_NAME                     'TIMES'
-$   IF DECLARED REG      $SET STARTRUN 'RESTART'
-$   IF NOT DECLARED REG  $SET STARTRUN 'SCRATCH'
-$SET XTQA YES
-* VAR_UC being set so that non-binding constraints appear in results
-$SET VAR_UC YES 
- OPTION BRATIO=1;
-$ SET OBJ AUTO
-$ SET OBLONG YES
-$SET DAMAGE NO
-$ SET STAGES NO
-$SET SOLVEDA 'YES'
-$SET DATAGDX YES
-
-* merge declarations & data
-$   ONMULTI
-
-* the times-slices MUST come 1st to ensure ordering OK
-$BATINCLUDE dtu_fossilfri_2050_ts.dd
- 
-
-* perform fixed declarations
-$SET BOTIME 1970
-$BATINCLUDE initsys.mod
-
-* declare the (system/user) empties
-$   BATINCLUDE initmty.mod
-*$   BATINCLUDE initmty.mod DSC
-$IF NOT DECLARED REG_BNDCST $Abort "You need to use TIMES v2.3.1 or higher"
-
 $BATINCLUDE base.dd
 $BATINCLUDE elc_techs.dd
 $BATINCLUDE elc_plants2020.dd
@@ -112,12 +56,5 @@ $BATINCLUDE vat.dd
 
 SET MILESTONYR /2010,2012,2015,2020,2025,2030,2035,2040,2045,2050/;
 $SET RUN_NAME 'DTU_Fossilfri_2050'
-
-
-$ SET VEDAVDD 'YES'
-
-* do the rest
-$ BATINCLUDE maindrv.mod mod
-
 
 
