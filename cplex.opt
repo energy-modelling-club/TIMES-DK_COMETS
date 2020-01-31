@@ -1,0 +1,7 @@
+scaind 0
+rerun yes
+iis yes
+lpmethod 4
+baralg 1
+barcrossalg 1
+barorder 2
