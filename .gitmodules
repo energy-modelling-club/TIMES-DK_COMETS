@@ -1,4 +1,4 @@
 [submodule "TIMES source code"]
 	path = source
-	url = https://github.com/energy-modelling-club/TIMES_model
-	branch = unzipped
+	url = https://github.com/etsap-TIMES/TIMES_model
+	branch = master
